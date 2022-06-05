@@ -8,7 +8,32 @@ const dates = [
 ];
 
 // TODO: Buatlah fungsi createDate
-const createDate = null;
+const createDate = (dates, dateIndex=dates.length) => {
+  // create function to convert milisecond to second
+  let milisecondConverter = (milis) => Math.floor(milis / 1000);
+
+  // check if no params go to looping
+  if(dateIndex === dates.length) {
+    // set a container variable
+    let noParamsOutput = [];
+
+    // loops until the contents of the array run out
+    for(counter = 0; counter < dateIndex; counter++) {
+      // convert milisecond date into second
+      let dateInSecond = milisecondConverter(Date.parse(dates[counter]));
+      // push into container variable
+      noParamsOutput.push(dateInSecond.toString());
+    }
+
+    // sort output
+    noParamsOutput.sort();
+    return noParamsOutput.join("-");
+  }
+
+  // if user enter the date index -> parse the output
+  let outputDate = milisecondConverter(Date.parse(dates[dateIndex])).toString();
+  return outputDate;
+};
 
 // ! JANGAN DIMODIFIKASI
 (() => {
